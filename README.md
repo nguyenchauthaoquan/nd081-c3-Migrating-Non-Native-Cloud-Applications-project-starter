@@ -61,11 +61,13 @@ You will need to install the following locally:
 ## Monthly Cost Analysis
 Complete a month cost analysis of each Azure resource to give an estimate total cost using the table below:
 
-| Azure Resource | Service Tier | Monthly Cost |
-| ------------ | ------------ | ------------ |
-| *Azure Postgres Database* |     |              |
-| *Azure Service Bus*   |         |              |
-| ...                   |         |              |
+| Azure Resource            | Service Tier                           | Monthly Cost                         |
+| ------------------------- | -------------------------------------- | ------------------------------------ |
+| *Azure Postgres Database* | Burstable                              |  $16.09                              |
+| *Azure Service Bus*       | Basic                                  |  $0.05 per 1M operations per 1 month |
+| *Azure Storage account*   | Standard performance - Hot access tier |  $0.144                              |
+| *Azure App Service*       | Basic (B3)                             |  $48,91                              |
 
 ## Architecture Explanation
-This is a placeholder section where you can provide an explanation and reasoning for your architecture selection for both the Azure Web App and Azure Function.
+
+There are no changes of architecture for the application, I only had to save all the sensitive information for function app and web application to the app service environment (both function app and web app service environments variables) and refactor the notification flow within app.py. The application was configured perfectly (no any changes for architectures). Creating a service bus namespace to handle the notifications is a good idea for using azure notification service instead of using event grid, event hub. The cost is reasonable when using the basic plan for service bus, app service, burstable for azure postgres flexible database and comsumption plan function app and it could all be replaced by using simple Azure Postgres Database, Azure App Service Basic B1 to lower costs.
