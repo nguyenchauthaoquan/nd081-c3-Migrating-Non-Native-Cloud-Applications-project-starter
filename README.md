@@ -66,9 +66,11 @@ Complete a month cost analysis of each Azure resource to give an estimate total 
 | *Azure Postgres Database* | Burstable                              |  $16.09                              |
 | *Azure Service Bus*       | Basic                                  |  $0.05 per 1M operations per 1 month |
 | *Azure Storage account*   | Standard performance - Hot access tier |  $0.144                              |
-| *Azure App Service*       | Basic (B3)                             |  $48,91                              |
+| *Azure App Service*       | Basic (B1)                             |  $12,41                              |
+| *Azure Function*          | Consumption plan (Y1)                  |  $0.20 per 1 million executions      |
 
 ## Architecture Explanation
 
 The architecture of application was configured perfectly, but the sensitive datas in web application structure are exposed leading to the data leaks so I configured these information as the environment variables in function app and web app service. 
-Creating a service bus namespace to handle the notifications is a good idea for using azure notification service instead of using event grid or event hub, event hub. The cost is reasonable when using the basic plan for service bus, app service, burstable and premium SSD for azure postgres flexible database and comsumption plan function app and it could all be replaced by moving to Azure Postgres Database, Azure App Service Basic B1 to lower costs.
+Creating a service bus namespace to handle the notifications is a good idea for using azure notification service instead of using event grid or event hub, event hub.
+ The cost is reasonable when using the basic plan for service bus, B1 plan for app service, burstable and premium SSD for azure postgres flexible database and comsumption plan function app. Furthermore, we can choose the B3 or B2 for app service and the premium plan for function app for the performance optimization
